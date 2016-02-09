@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>autocomplete</title>
+</head>
+<body>
+
+	<input type="text" name="search" id="search">
+
+	<select id="s" size="2">
+		<option value="t">Teste</option>
+		<option value="t2">Teste 02</option>
+	</select>
+	
+
+	<script id="tpl-option" type="js-template">
+		<option value="<% id %>"><% label %></option>
+	</script>
+
+	<script src="engine.js"></script>
+	<script src="autocomplete.js"></script>
+	<script>
+	( function () {
+		var fetch = 'data.json';
+		Autocomplete.call( document.getElementById( 'search' ), fetch );
+	})();
+	</script>
+</body>
+</html>
