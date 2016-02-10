@@ -3,27 +3,61 @@
 <head>
 	<meta charset="UTF-8">
 	<title>autocomplete</title>
+	<style>
+	.selected { background-color: #ccc }
+	</style>
 </head>
 <body>
 
-	<input type="text" name="search" id="search">
+	<div class="row">
+		<input type="text" name="search" id="search">
+		<input type="hidden" name="search_id" id="search_id">
+		<div class="autocomplete"></div>
+	</div>
 
-	<select id="s" size="2">
-		<option value="t">Teste</option>
-		<option value="t2">Teste 02</option>
-	</select>
-	
+	<div class="row">
+		<input type="text" name="search" id="search-2">
+		<div class="autocomplete"></div>
+	</div>
 
 	<script id="tpl-option" type="js-template">
-		<option value="<% id %>"><% label %></option>
+		<ul>
+			<% for ( var i = 0, l = data.length; i < l; i++ ) { %>
+				<li data-id="<% data[ i ].id %>" class="<% if ( i === 0 ) { %>selected<% } %>" onclick="AutocompleteActions.select.call( this, true )">
+					<% data[ i ].label %>
+				</li>
+			<% } %>
+		</ul>
 	</script>
 
 	<script src="engine.js"></script>
 	<script src="autocomplete.js"></script>
 	<script>
 	( function () {
-		var fetch = 'data.json';
-		Autocomplete.call( document.getElementById( 'search' ), fetch );
+		var input = document.getElementById( 'search' );
+		var id = document.getElementById( 'search_id' );
+
+		Autocomplete.init.call( input, 
+			{
+				source: 'data.json'
+				, select: function () {
+					console.log( this );
+					input.value = this.label;
+					id.value = this.id;
+				}
+			}
+		);
+
+		var input2 = document.getElementById( 'search-2' );
+
+		Autocomplete.init.call( input2, 
+			{
+				source: 'data-2.json'
+				, select: function () {
+					input2.value = this.label;
+				}
+			}
+		);
 	})();
 	</script>
 </body>

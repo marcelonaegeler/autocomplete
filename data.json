@@ -1,10 +1,10 @@
 [
 	{
-		"name": "Marcelo"
+		"label": "Marcelo"
 		, "id": 1
 	}
 	, {
-		"name": "Cleito"
+		"label": "Cleito"
 		, "id": 2
 	}
 ]
