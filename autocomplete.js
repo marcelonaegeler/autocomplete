@@ -71,12 +71,12 @@
 		};
 
 		var select = function ( isClick, callback, input ) {
-			
+			console.log( arguments );
 			if ( isClick ) {
 				
 				var sel = { id: this.dataset.id, label: this.innerText };
 				callback && callback.call( sel );
-				boxDisplay.hide.call( input );
+				boxDisplay.hide.call( this );
 
 			} else {
 
@@ -92,7 +92,6 @@
 						break;
 					}
 				}
-				
 			}
 		};
 
@@ -163,11 +162,9 @@
 			});
 		};
 
-		this.onblur = function () {
+		this.onfocusout = function () {
 			boxDisplay.hide.call( this );
 		};
-
-		this.onfocus = doRequest;
 
 		this.onkeydown = function ( event ) {
 			var k = event.keyCode;

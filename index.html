@@ -23,7 +23,7 @@
 	<script id="tpl-option" type="js-template">
 		<ul>
 			<% for ( var i = 0, l = data.length; i < l; i++ ) { %>
-				<li data-id="<% data[ i ].id %>" class="<% if ( i === 0 ) { %>selected<% } %>" onclick="AutocompleteActions.select.call( this, true )">
+				<li data-id="<% data[ i ].id %>" class="<% if ( i === 0 ) { %>selected<% } %>" onclick="Autocomplete.actions.select.call( this, true )">
 					<% data[ i ].label %>
 				</li>
 			<% } %>
